@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chuyện của hai đứa</title>
+<style>
+body {
+    background: #fff8f0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+.question {
+    opacity: 0;
+    transition: opacity 0.5s;
+    margin-bottom: 30px;
+    font-size: 18px;
+}
+.question.active {
+    opacity: 1;
+}
+.next-btn {
+    display: block;
+    padding: 10px 20px;
+    margin: 0 auto 20px auto;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    background: #f5b0c2;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.next-btn:hover {
+    background: #f07aa0;
+}
+.signature {
+    text-align: center;
+    font-style: italic;
+    font-size: 18px;
+    margin-top: 30px;
+}
+.heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: red;
+    clip-path: polygon(50% 0%, 61% 15%, 75% 15%, 85% 25%, 85% 40%, 75% 60%, 50% 80%, 25% 60%, 15% 40%, 15% 25%, 25% 15%, 39% 15%);
+    animation: floatUp 3s linear infinite;
+    opacity: 0.8;
+}
+@keyframes floatUp {
+    0% {transform: translateY(0) scale(0.5); opacity: 0.8;}
+    100% {transform: translateY(-300px) scale(1); opacity: 0;}
+}
+img.flower {
+    width: 80px;
+    display: block;
+    margin: 10px auto;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h2 style="text-align:center;">Chuyện của hai đứa trước khi bắt đầu hành trình mới 💌</h2>
+<img class="flower" src="https://i.ibb.co/PMtKk4H/flower.png" alt="flower">
+<div class="question active">1. Mình mong đợi điều gì ở hôn nhân?</div>
+<div class="question">2. Khi có mâu thuẫn, mình muốn xử lý như thế nào?</div>
+<div class="question">3. Quan điểm về tài chính sau cưới?</div>
+<div class="question">4. Mình muốn sống ở đâu sau cưới?</div>
+<div class="question">5. Về con cái, cả hai mong muốn thế nào?</div>
+<div class="question">6. Cách thể hiện tình yêu để đối phương cảm nhận rõ?</div>
+<div class="question">7. Mỗi người có điều gì sợ nhất khi bước vào hôn nhân?</div>
+<div class="question">8. Gia đình hai bên có ảnh hưởng gì tới quyết định và cuộc sống?</div>
+<div class="question">9. Nếu có giai đoạn khó khăn, mình sẽ vượt qua bằng cách nào?</div>
+<div class="question">10. Sau 5 năm nữa, mình muốn nhìn thấy phiên bản “chúng ta” như thế nào?</div>
+<button class="next-btn">Next</button>
+<div class="signature">– Công chúa của anh 🤍</div>
+</div>
+
+<script>
+const questions = document.querySelectorAll('.question');
+let current = 0;
+
+document.querySelector('.next-btn').addEventListener('click', () => {
+    createHeart();
+    questions[current].classList.remove('active');
+    current++;
+    if(current < questions.length){
+        questions[current].classList.add('active');
+    } else {
+        alert("Chúc mừng! Bạn đã hoàn thành tất cả câu hỏi 💖");
+    }
+});
+
+// Trái tim bay
+function createHeart() {
+  const heart = document.createElement('div');
+  heart.className = 'heart';
+  heart.style.left = Math.random() * window.innerWidth + 'px';
+  heart.style.animationDuration = (2 + Math.random() * 3) + 's';
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), 4000);
+}
+</script>
+</body>
+</html>
